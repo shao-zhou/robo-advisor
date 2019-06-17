@@ -11,7 +11,7 @@ After creating the remote repo, use GitHub Desktop software or the command-line 
 After cloning the repo, navigate there from the command-line:
 
 ```sh
-cd ~/Desktop/shopping-cart
+cd ~/Desktop/robo-advisor
 ```
 
 ## Environment Setup
