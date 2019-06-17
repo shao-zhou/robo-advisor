@@ -19,7 +19,8 @@ def to_usd(my_price):
 api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
 #print(api_key)
 
-symbol = "MSFT"
+symbol = input("Please specify a stock symbol (e.g. MSFT) and press enter: ")
+
 request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
 response = requests.get(request_url)
 # print(type(response))  #this is a Response
@@ -77,7 +78,7 @@ with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writin
 
 
 print("-------------------------")
-print("SELECTED SYMBOL: XYZ")
+print(f"SELECTED SYMBOL: {symbol}")
 
 print("-------------------------")
 print("REQUESTING STOCK MARKET DATA...")
