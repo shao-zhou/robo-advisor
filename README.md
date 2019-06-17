@@ -1,4 +1,4 @@
-# Shopping Cart Project 
+# Robo Advisor Project 
 
 A Python application that automates the process of providing stock trading recommendations.
 
