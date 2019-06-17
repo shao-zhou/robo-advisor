@@ -32,7 +32,7 @@ pip install -r requirements.txt
 From within the virtual environment, demonstrate your ability to run the Python script from the command-line:
 
 ```sh
-python robo_advisor.py
+python app/robo_advisor.py
 ```
 
 Follow the user input prompts to run the application.
