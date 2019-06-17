@@ -5,6 +5,9 @@ import requests
 import json 
 import os
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
@@ -13,7 +16,11 @@ def to_usd(my_price):
 #INFO INPUTS
 #
 
-request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
+api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
+#print(api_key)
+
+symbol = "MSFT"
+request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
 response = requests.get(request_url)
 # print(type(response))  #this is a Response
 # print(response.status_code)  #200
