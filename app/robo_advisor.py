@@ -31,7 +31,7 @@ try:
 # print(response.text)
 
 except KeyError:
-    print("Oh, expecting a properly-formed stock symbol like 'MSFT'. Please try again.")
+    print("Sorry, couldn't find any trading data for that stock symbol. Please try again.")
     exit()
 
 # used Key Error exception handling outlined here: https://python101.pythonlibrary.org/chapter7_exception_handling.html
