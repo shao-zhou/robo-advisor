@@ -19,17 +19,22 @@ def to_usd(my_price):
 api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
 #print(api_key)
 
-symbol = input("Please specify a stock symbol (e.g. MSFT) and press enter: ")
+try:
+    symbol = input("Please specify a stock symbol (e.g. MSFT) and press enter: ")
 
-request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
-response = requests.get(request_url)
+    request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
+    response = requests.get(request_url)
+    parsed_response = json.loads(response.text)  # parse json into a dictionary
+    last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 # print(type(response))  #this is a Response
 # print(response.status_code)  #200
 # print(response.text)
 
-parsed_response = json.loads(response.text)  # parse json into a dictionary
+except KeyError:
+    print("Oh, expecting a properly-formed stock symbol like 'MSFT'. Please try again.")
+    exit()
 
-last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
+# used Key Error exception handling outlined here: https://python101.pythonlibrary.org/chapter7_exception_handling.html
 
 tsd = parsed_response["Time Series (Daily)"]
 dates = list(tsd.keys())
@@ -76,7 +81,6 @@ with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writin
             "volume": daily_prices["5. volume"],
             })
 
-
 print("-------------------------")
 print(f"SELECTED SYMBOL: {symbol}")
 
@@ -102,6 +106,5 @@ print(f"WRITING DATA TO CSV: {csv_file_path}")
 print("-------------------------")
 print("HAPPY INVESTING!")
 print("-------------------------")
-
 
 
